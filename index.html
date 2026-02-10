@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Libro para Ti</title>
+    <title>Para Tanya - Mi Historia Contigo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,6 +16,7 @@
         body {
             background-color: #f9f1e8;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -29,7 +30,7 @@
             height: 600px;
             perspective: 1500px;
             position: relative;
-            margin: 0 auto;
+            margin: 0 auto 30px;
         }
 
         .book {
@@ -95,8 +96,16 @@
         .cover h2 {
             font-size: 1.8rem;
             font-weight: normal;
+            margin-bottom: 10px;
+            color: #fdf6f0;
+        }
+
+        .cover h3 {
+            font-size: 1.4rem;
+            font-weight: normal;
             margin-bottom: 30px;
             color: #fdf6f0;
+            font-style: italic;
         }
 
         .cover-img {
@@ -134,8 +143,8 @@
         .page-content {
             font-size: 1.2rem;
             line-height: 1.6;
-            margin-bottom: 30px;
-            max-width: 80%;
+            margin-bottom: 20px;
+            max-width: 85%;
         }
 
         .romantic-img {
@@ -143,17 +152,38 @@
             height: 180px;
             object-fit: cover;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 15px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 5px solid white;
+        }
+
+        .photo-placeholder {
+            width: 220px;
+            height: 180px;
+            background-color: #e6d0b8;
+            border-radius: 10px;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #5a3921;
+            font-style: italic;
+            border: 3px dashed #b08d6e;
+        }
+
+        .photo-placeholder i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #b08d6e;
         }
 
         /* Controles de navegación */
         .controls {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
             gap: 20px;
+            margin-top: 10px;
         }
 
         .btn {
@@ -217,6 +247,13 @@
             max-width: 90%;
         }
 
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+            font-style: normal;
+        }
+
         /* Decoraciones */
         .decoration {
             position: absolute;
@@ -227,6 +264,12 @@
         .heart {
             color: #ff6b8b;
             font-size: 2rem;
+        }
+
+        .page-counter {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #b08d6e;
         }
 
         /* Responsive */
@@ -243,6 +286,10 @@
                 font-size: 1.4rem;
             }
             
+            .cover h3 {
+                font-size: 1.1rem;
+            }
+            
             .page-title {
                 font-size: 1.8rem;
             }
@@ -256,96 +303,184 @@
                 padding: 10px 20px;
                 font-size: 1rem;
             }
+            
+            .romantic-img, .photo-placeholder {
+                width: 180px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="book-container">
         <div class="book" id="book">
-            <!-- Portada -->
+            <!-- Página 1: Portada -->
             <div class="page page-front cover">
                 <div class="heart-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h1>Para Mi Amor</h1>
-                <h2>Un libro especial para una persona especial</h2>
-                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pareja" class="cover-img">
-                <p style="margin-top: 20px; font-size: 1.2rem;">Abre este libro y descubre lo que siento por ti</p>
+                <h1>Para Tanya</h1>
+                <h2>Chavez Alanis</h2>
+                <h3>La historia de nuestro amor</h3>
+                <div class="photo-placeholder">
+                    <i class="fas fa-heart"></i>
+                    <p>Tu foto aquí</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 1.2rem;">Abre este libro con el corazón</p>
                 <div class="page-number">❤️</div>
             </div>
 
-            <!-- Página 1 -->
+            <!-- Página 2 -->
             <div class="page page-back">
-                <h2 class="page-title">Mi Razón</h2>
+                <h2 class="page-title">Nuestro Primer Encuentro</h2>
                 <p class="page-content">
-                    Desde que llegaste a mi vida, todo tiene más color. Eres la razón por la que sonrío cada mañana y la última persona en la que pienso antes de dormir.
+                    Todo comenzó en la secundaria. Aunque aún no éramos novios, desde el primer momento que te vi supe que eras especial.
                 </p>
-                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pareja feliz" class="romantic-img">
+                <div class="photo-placeholder">
+                    <i class="fas fa-school"></i>
+                    <p>Foto de secundaria</p>
+                </div>
                 <p class="page-content">
-                    Contigo he descubierto lo que es el amor verdadero, ese que no pide nada a cambio y que crece día a día.
+                    Recuerdo que pensé: "Es la chica más hermosa que he visto". Tu sonrisa iluminaba todo a tu alrededor.
                 </p>
                 <div class="page-number">1</div>
             </div>
 
-            <!-- Página 2 -->
+            <!-- Página 3 -->
             <div class="page page-front">
-                <h2 class="page-title">Nuestros Momentos</h2>
+                <h2 class="page-title">El Reencuentro</h2>
                 <p class="page-content">
-                    Cada risa, cada abrazo, cada conversación hasta tarde... todos son tesoros que guardo en mi corazón.
+                    Luego, en el 2021, el destino nos volvió a unir. Después de tanto tiempo, te encontré de nuevo.
                 </p>
-                <img src="https://images.unsplash.com/photo-1529254479751-fbacb4c7a587?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Momentos juntos" class="romantic-img">
+                <div class="photo-placeholder">
+                    <i class="fas fa-search"></i>
+                    <p>Momento del reencuentro</p>
+                </div>
                 <p class="page-content">
-                    Aunque a veces la vida nos presente desafíos, sé que juntos podemos superar cualquier cosa.
+                    Y me armé de valor para enviarte ese mensaje tan bonito: "Hola, ¿quieres salir conmigo por un helado?"
                 </p>
                 <div class="page-number">2</div>
             </div>
 
-            <!-- Página 3 - Pregunta especial -->
+            <!-- Página 4 -->
             <div class="page page-back">
-                <h2 class="page-title">Una Pregunta Especial</h2>
+                <h2 class="page-title">Nuestra Primera Cita</h2>
                 <p class="page-content">
-                    Hay algo que he estado deseando preguntarte desde hace tiempo, algo que llevo en el corazón...
+                    Ese día, compartiendo un helado, supe que eras para mí. Cada palabra, cada risa, confirmaba lo que mi corazón ya sabía.
+                </p>
+                <div class="photo-placeholder">
+                    <i class="fas fa-ice-cream"></i>
+                    <p>Nuestro primer helado juntos</p>
+                </div>
+                <p class="page-content">
+                    Desde ese momento, no hubo duda alguna. Tú, Tanya, habías llegado para quedarte en mi vida para siempre.
+                </p>
+                <div class="page-number">3</div>
+            </div>
+
+            <!-- Página 5 -->
+            <div class="page page-front">
+                <h2 class="page-title">El Comienzo de Todo</h2>
+                <p class="page-content">
+                    Y así, sin planearlo pero con el corazón lleno de esperanza, comenzó nuestra historia de amor.
+                </p>
+                <div class="photo-placeholder">
+                    <i class="fas fa-heart"></i>
+                    <p>Nuestra primera foto como novios</p>
+                </div>
+                <p class="page-content">
+                    Decidiste ser mi novia, y desde entonces cada día a tu lado ha sido un regalo que atesoro profundamente.
+                </p>
+                <div class="page-number">4</div>
+            </div>
+
+            <!-- Página 6 -->
+            <div class="page page-back">
+                <h2 class="page-title">Creciendo Juntos</h2>
+                <p class="page-content">
+                    Como toda pareja, hemos tenido errores y momentos difíciles. Pero lo más bonito ha sido cómo los hemos solucionado juntos.
+                </p>
+                <div class="photo-placeholder">
+                    <i class="fas fa-handshake"></i>
+                    <p>Superando obstáculos juntos</p>
+                </div>
+                <p class="page-content">
+                    Porque te amo muchísimo, y ese amor nos ha dado la fuerza para superar cualquier desafío que se presente.
+                </p>
+                <div class="page-number">5</div>
+            </div>
+
+            <!-- Página 7 -->
+            <div class="page page-front">
+                <h2 class="page-title">Lo Que Eres Para Mí</h2>
+                <p class="page-content">
+                    Eres mi confidente, mi mejor amiga, mi compañera de aventuras y la razón por la que quiero ser mejor cada día.
+                </p>
+                <div class="photo-placeholder">
+                    <i class="fas fa-star"></i>
+                    <p>Un momento especial juntos</p>
+                </div>
+                <p class="page-content">
+                    Tu amor me ha enseñado el verdadero significado de la felicidad y me ha hecho descubrir partes de mí que no conocía.
+                </p>
+                <div class="page-number">6</div>
+            </div>
+
+            <!-- Página 8: Pregunta especial -->
+            <div class="page page-back">
+                <h2 class="page-title">Mi Petición de Corazón</h2>
+                <p class="page-content">
+                    Por todo lo que hemos vivido, por todo lo que hemos superado, y por todo lo que aún nos espera...
                 </p>
                 <div class="heart-icon" style="font-size: 4rem;">
                     <i class="fas fa-heart"></i>
                 </div>
                 <p class="page-content" style="font-size: 1.5rem; margin-top: 20px; color: #ff6b8b; font-weight: bold;">
-                    ¿Quieres ser mi 14 de febrero... y todos los días de mi vida?
+                    Tanya, ¿quieres ser mi 14 de febrero...<br>y todos los días de mi vida?
                 </p>
                 <p class="page-content" style="margin-top: 30px;">
-                    Este día siempre será especial, pero contigo a mi lado sería simplemente perfecto.
+                    Este día será especial, pero contigo a mi lado, cada día es una celebración de nuestro amor.
                 </p>
-                <div class="page-number">3</div>
+                <div class="page-number">7</div>
             </div>
 
-            <!-- Página 4 - Contenido del 14 de febrero (inicialmente oculto) -->
+            <!-- Página 9: Contenido del 14 de febrero -->
             <div class="page page-front">
                 <div class="valentine-content" id="valentine-content">
-                    <h2 class="valentine-title">¡Feliz 14 de Febrero!</h2>
+                    <h2 class="valentine-title">¡Feliz 14 de Febrero, Mi Amor!</h2>
                     <p class="page-content">
-                        Hoy es un día especial para celebrar nuestro amor. Gracias por aceptar ser mi compañera en esta aventura.
+                        Hoy celebramos nuestro amor con más fuerza que nunca. Gracias por aceptar ser mi compañera en esta vida.
                     </p>
-                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Celebración" class="romantic-img">
+                    <div class="photo-placeholder">
+                        <i class="fas fa-gift"></i>
+                        <p>Nuestro 14 de febrero</p>
+                    </div>
                     <div class="love-letter">
-                        <p>Mi amor,</p>
-                        <p>Hoy quiero recordarte lo mucho que significas para mí. Eres la luz que ilumina mis días y la calma que tranquiliza mis noches.</p>
-                        <p>Cada momento a tu lado es un regalo que atesoro con todo mi corazón. Espero que este sea el primero de muchos 14 de febrero juntos.</p>
-                        <p>Con todo mi amor,<br>Tu pareja</p>
+                        <p>Mi querida Tanya,</p>
+                        <p>Hoy, en este día tan especial, quiero recordarte lo infinitamente afortunado que me siento de tenerte en mi vida.</p>
+                        <p>Desde aquel día en la secundaria donde solo podía admirarte de lejos, hasta este momento donde puedo llamarte mi novia, cada instante ha valido la pena.</p>
+                        <p>Eres mi sueño hecho realidad, la respuesta a mis oraciones y la razón por la que creo en el destino.</p>
+                        <p>Prometo amarte, respetarte y cuidarte cada día de mi vida. Que este sea el primero de muchos 14 de febrero juntos.</p>
+                        <p class="signature">Con todo mi amor,<br>Tu novio que te adora</p>
                     </div>
                 </div>
                 <div id="placeholder-content">
-                    <h2 class="page-title">Una Sorpresa Esperando</h2>
+                    <h2 class="page-title">Una Sorpresa Para el 14</h2>
                     <p class="page-content">
-                        Esta página guarda una sorpresa especial para cuando llegue el 14 de febrero. Vuelve ese día para descubrirla.
+                        Esta página guarda un mensaje especial que se revelará el día de San Valentín. ¡Vuelve el 14 de febrero!
                     </p>
                     <div class="heart-icon" style="font-size: 4rem;">
                         <i class="far fa-calendar-heart"></i>
                     </div>
                     <p class="page-content">
-                        Mientras tanto, cada día a tu lado es un regalo que aprecio más de lo que las palabras pueden expresar.
+                        Mientras tanto, quiero que sepas que mi amor por ti crece con cada amanecer que compartimos.
                     </p>
+                    <div class="photo-placeholder">
+                        <i class="fas fa-clock"></i>
+                        <p>Esperando nuestro día especial</p>
+                    </div>
                 </div>
-                <div class="page-number">4</div>
+                <div class="page-number">8</div>
             </div>
         </div>
     </div>
@@ -354,6 +489,7 @@
         <button class="btn" id="prev-btn">
             <i class="fas fa-arrow-left"></i> Página Anterior
         </button>
+        <span class="page-counter" id="page-counter">Página 1 de 8</span>
         <button class="btn" id="next-btn">
             Siguiente Página <i class="fas fa-arrow-right"></i>
         </button>
@@ -364,12 +500,13 @@
         const book = document.getElementById('book');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
+        const pageCounter = document.getElementById('page-counter');
         const valentineContent = document.getElementById('valentine-content');
         const placeholderContent = document.getElementById('placeholder-content');
         
         let currentPage = 0;
-        const totalPages = 4; // Número total de páginas
-        const feb14Page = 3; // Página con contenido del 14 de febrero
+        const totalPages = 8; // Número total de páginas
+        const feb14Page = 7; // Página con contenido del 14 de febrero (página 8, índice 7)
         
         // Verificar si es 14 de febrero
         function isFebruary14() {
@@ -397,7 +534,7 @@
             if (page < 0) page = 0;
             if (page > totalPages - 1) page = totalPages - 1;
             
-            // Calcular el ángulo de rotación
+            // Calcular el ángulo de rotación (cada página es 180 grados)
             const angle = page * 180;
             
             // Aplicar la rotación al libro
@@ -405,6 +542,9 @@
             
             // Actualizar la página actual
             currentPage = page;
+            
+            // Actualizar el contador de páginas
+            pageCounter.textContent = `Página ${currentPage + 1} de ${totalPages}`;
             
             // Actualizar estado de los botones
             prevBtn.disabled = currentPage === 0;
@@ -437,6 +577,49 @@
             }
         });
         
+        // Función para cargar imágenes personalizadas
+        function setupImageUpload() {
+            const placeholders = document.querySelectorAll('.photo-placeholder');
+            
+            placeholders.forEach((placeholder, index) => {
+                placeholder.addEventListener('click', function() {
+                    // Crear un input de tipo file oculto
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.accept = 'image/*';
+                    
+                    input.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                // Crear una imagen con la foto cargada
+                                const img = document.createElement('img');
+                                img.src = e.target.result;
+                                img.className = 'romantic-img';
+                                img.alt = 'Nuestra foto';
+                                
+                                // Reemplazar el placeholder con la imagen
+                                placeholder.parentNode.replaceChild(img, placeholder);
+                            };
+                            
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                    
+                    // Simular click en el input para abrir el diálogo de archivos
+                    input.click();
+                });
+                
+                // Agregar instrucción de tooltip
+                placeholder.title = "Haz clic para agregar una foto";
+            });
+        }
+        
+        // Inicializar la función para cargar imágenes
+        setupImageUpload();
+        
         // Función para simular que es 14 de febrero (para pruebas)
         // Cambia a true para ver cómo se vería el contenido del 14 de febrero
         const simulateFebruary14 = false;
@@ -446,6 +629,12 @@
             valentineContent.classList.add('show');
             placeholderContent.style.display = 'none';
         }
+        
+        // Información sobre cómo personalizar
+        console.log("Para personalizar este libro para Tanya:");
+        console.log("1. Haz clic en cualquier recuadro gris para subir tus propias fotos");
+        console.log("2. Puedes editar los textos directamente en el código HTML");
+        console.log("3. El contenido del 14 de febrero se mostrará automáticamente ese día");
     </script>
 </body>
 </html>
