@@ -31,16 +31,19 @@ body {
         radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL - CORREGIDO */
 .container {
-    width: 200%;
+    width: 100%;
     max-width: 450px;
+    margin: 0 auto;
 }
 
-/* LIBRO */
+/* LIBRO - CORREGIDO PARA RESPONSIVE */
 .book {
     width: 100%;
-    height: 800px;
+    height: auto;
+    min-height: 600px;
+    max-height: 90vh;
     background: white;
     border-radius: 25px;
     box-shadow: 
@@ -50,21 +53,23 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 /* PÁGINAS */
 .page {
     display: none;
-    position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    padding: 30px;
+    padding: 25px 20px;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .page.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .page-content {
@@ -73,7 +78,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    flex: 1;
+    gap: 15px;
 }
 
 /* DECORACIÓN DE CORAZONES */
@@ -81,13 +87,13 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 10px;
     animation: heartFloat 3s infinite ease-in-out;
 }
 
 .decoration-hearts span {
-    font-size: 2rem;
+    font-size: 1.8rem;
     animation: heartBeat 1.5s infinite;
 }
 
@@ -113,17 +119,20 @@ body {
 .header {
     text-align: center;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .header h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     background: linear-gradient(45deg, #ff4e50, #f9d423);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     margin-bottom: 5px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+    padding: 0 10px;
 }
 
 .heart-title {
@@ -137,18 +146,19 @@ body {
     100% { transform: scale(0.9); opacity: 0.8; }
 }
 
-/* MARCO DE FOTO */
+/* MARCO DE FOTO RESPONSIVE */
 .photo-frame {
-    width: 160px;
-    height: 160px;
+    width: clamp(120px, 25vw, 160px);
+    height: clamp(120px, 25vw, 160px);
     border-radius: 50%;
     background: linear-gradient(135deg, #ff4e50, #f9d423);
-    padding: 8px;
-    margin: 10px 0 20px 0;
+    padding: 6px;
+    margin: 10px 0 15px 0;
     box-shadow: 
         0 10px 30px rgba(255, 78, 80, 0.3),
         inset 0 0 20px rgba(255, 255, 255, 0.5);
     animation: photoGlow 3s infinite alternate;
+    flex-shrink: 0;
 }
 
 @keyframes photoGlow {
@@ -169,49 +179,52 @@ body {
 }
 
 .photo-circle i {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    margin-bottom: 8px;
     opacity: 0.8;
 }
 
 .photo-circle p {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: #ff4e50;
     font-weight: 600;
+    text-align: center;
+    padding: 0 5px;
 }
 
-/* CONTENEDOR DE TEXTO Y BOTÓN (JUNTOS) */
+/* CONTENEDOR DE TEXTO Y BOTÓN */
 .text-and-button {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     margin-top: 10px;
     flex: 1;
 }
 
-/* MENSAJE Y TEXTO */
+/* MENSAJE Y TEXTO RESPONSIVE */
 .message-box {
     width: 100%;
-    max-width: 380px;
-    padding: 20px;
+    max-width: 400px;
+    padding: 15px;
     background: linear-gradient(135deg, rgba(255, 248, 248, 0.9), rgba(255, 240, 240, 0.9));
-    border-radius: 20px;
+    border-radius: 15px;
     border-left: 5px solid #ff4e50;
     box-shadow: 0 8px 25px rgba(255, 78, 80, 0.15);
-    min-height: 150px;
-    max-height: 180px;
+    min-height: 120px;
+    max-height: 200px;
     overflow-y: auto;
+    margin: 0 auto;
 }
 
 .typing-container {
-    min-height: 110px;
+    min-height: 100px;
     position: relative;
 }
 
 #typing {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     line-height: 1.5;
     color: #555;
     text-align: center;
@@ -234,26 +247,28 @@ body {
     50% { opacity: 0; }
 }
 
-/* BOTONES PRINCIPALES */
+/* BOTONES PRINCIPALES RESPONSIVE */
 .next-btn {
     background: linear-gradient(135deg, #ff4e50, #ff7b54);
     color: white;
     border: none;
-    padding: 14px 35px;
+    padding: clamp(12px, 3vw, 14px) clamp(25px, 5vw, 35px);
     border-radius: 50px;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 10px;
     transition: all 0.3s ease;
     box-shadow: 0 8px 25px rgba(255, 78, 80, 0.3);
     margin-top: 10px;
     opacity: 1 !important;
     visibility: visible !important;
-    position: relative;
-    z-index: 10;
+    width: auto;
+    min-width: 180px;
+    max-width: 300px;
 }
 
 .next-btn:hover {
@@ -269,27 +284,28 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 /* INDICADOR DE PÁGINA */
 .page-indicator {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: #888;
     font-weight: 500;
     margin-top: 10px;
     text-align: center;
     width: 100%;
+    padding: 5px 0;
 }
 
 /* PÁGINA 2 - CANDADO */
 .lock-container {
-    margin: 10px 0;
+    margin: 15px 0;
     position: relative;
 }
 
 .lock-icon {
-    font-size: 4.5rem;
+    font-size: clamp(3.5rem, 8vw, 4.5rem);
     color: #ff4e50;
     position: relative;
     animation: lockShake 3s infinite;
@@ -306,12 +322,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: bold;
     color: white;
     background: #ff4e50;
-    width: 45px;
-    height: 45px;
+    width: clamp(35px, 8vw, 45px);
+    height: clamp(35px, 8vw, 45px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -320,136 +336,150 @@ body {
 }
 
 .secret-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
     color: #ff4e50;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-family: 'Dancing Script', cursive;
+    text-align: center;
+    padding: 0 10px;
 }
 
 .secret-message {
     background: linear-gradient(135deg, rgba(255, 248, 248, 0.9), rgba(255, 240, 240, 0.9));
-    padding: 20px;
-    border-radius: 20px;
+    padding: clamp(15px, 3vw, 20px);
+    border-radius: 15px;
     margin: 15px 0;
     border: 2px dashed #ff4e50;
-    max-width: 380px;
+    max-width: 400px;
+    width: 90%;
 }
 
 .secret-message p {
-    margin: 10px 0;
-    font-size: 1rem;
+    margin: 8px 0;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     color: #666;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    line-height: 1.4;
 }
 
 .secret-message i {
     color: #ff4e50;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     min-width: 25px;
+    flex-shrink: 0;
 }
 
-/* COUNTDOWN */
+/* COUNTDOWN RESPONSIVE */
 .countdown {
-    margin: 20px 0;
+    margin: 15px 0;
     text-align: center;
+    width: 100%;
 }
 
 .countdown p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: #666;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: clamp(8px, 2vw, 12px);
     flex-wrap: wrap;
+    padding: 0 10px;
 }
 
 .time-unit {
     background: linear-gradient(135deg, #ff4e50, #ff7b54);
     color: white;
-    padding: 12px;
-    border-radius: 15px;
-    min-width: 65px;
+    padding: clamp(10px, 2vw, 12px);
+    border-radius: 12px;
+    min-width: clamp(55px, 15vw, 65px);
     box-shadow: 0 8px 20px rgba(255, 78, 80, 0.3);
+    flex: 1;
+    max-width: 80px;
 }
 
 .time-unit span {
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 4vw, 1.8rem);
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
 }
 
 .time-unit small {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.8rem);
     opacity: 0.9;
 }
 
-/* PÁGINA 3 - PREGUNTA */
+/* PÁGINA 3 - PREGUNTA RESPONSIVE */
 .question-container {
     width: 100%;
     max-width: 400px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
+    padding: 0 15px;
 }
 
 .pulse-heart {
-    font-size: 4.5rem;
+    font-size: clamp(3.5rem, 8vw, 4.5rem);
     color: #ff4e50;
-    margin: 15px 0;
+    margin: 10px 0;
     animation: pulse 1.5s infinite;
 }
 
 .question-container h2 {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 3.5vw, 1.6rem);
     color: #ff4e50;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .question-container h3 {
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 4vw, 2rem);
     background: linear-gradient(45deg, #ff4e50, #f9d423);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-family: 'Dancing Script', cursive;
+    line-height: 1.2;
+    padding: 0 10px;
 }
 
 .sub-question {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: #888;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-style: italic;
+    padding: 0 10px;
 }
 
-/* BOTONES DE RESPUESTA */
+/* BOTONES DE RESPUESTA RESPONSIVE */
 .buttons-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 25px 0;
+    gap: 12px;
+    margin: 20px 0;
     position: relative;
-    min-height: 180px;
+    min-height: 160px;
     width: 100%;
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 10px;
 }
 
 .yes {
     background: linear-gradient(135deg, #4CAF50, #8BC34A);
     color: white;
     width: 100%;
-    padding: 18px 25px;
+    padding: clamp(15px, 3vw, 18px) clamp(20px, 4vw, 25px);
     border: none;
-    border-radius: 20px;
-    font-size: 1.2rem;
+    border-radius: 18px;
+    font-size: clamp(1.1rem, 2.8vw, 1.2rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -457,7 +487,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     z-index: 2;
 }
 
@@ -473,10 +503,10 @@ body {
 .no {
     background: linear-gradient(135deg, #f44336, #ff7961);
     color: white;
-    padding: 18px 25px;
+    padding: clamp(15px, 3vw, 18px) clamp(20px, 4vw, 25px);
     border: none;
-    border-radius: 20px;
-    font-size: 1.2rem;
+    border-radius: 18px;
+    font-size: clamp(1.1rem, 2.8vw, 1.2rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -484,7 +514,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     position: absolute !important;
     z-index: 1;
     width: 100%;
@@ -497,9 +527,10 @@ body {
 
 .hint {
     color: #aaa;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     font-style: italic;
-    margin-top: 10px;
+    margin-top: 8px;
+    padding: 0 10px;
 }
 
 /* PÁGINA 4 - CELEBRACIÓN */
@@ -530,41 +561,44 @@ body {
 
 .celebration-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
+    padding: 0 15px;
 }
 
-/* DETALLES DE LA CITA */
+/* DETALLES DE LA CITA RESPONSIVE */
 .meeting-details {
     width: 100%;
     max-width: 380px;
-    margin: 20px 0;
+    margin: 15px 0;
+    padding: 0 15px;
 }
 
 .subtitle {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     opacity: 0.9;
 }
 
 .detail-card {
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    padding: 15px;
-    margin: 12px 0;
+    border-radius: 12px;
+    padding: clamp(12px, 2.5vw, 15px);
+    margin: 10px 0;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .detail-icon {
     background: linear-gradient(135deg, #ff4e50, #f9d423);
-    width: 45px;
-    height: 45px;
+    width: clamp(40px, 8vw, 45px);
+    height: clamp(40px, 8vw, 45px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -573,135 +607,49 @@ body {
 }
 
 .detail-icon i {
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     color: white;
 }
 
 .detail-text {
     text-align: left;
+    flex: 1;
 }
 
 .detail-text h3 {
     color: #ff4e50;
     margin-bottom: 5px;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 .detail-text p {
     color: #666;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     opacity: 0.8;
 }
 
-/* MENSAJE FINAL */
+/* MENSAJE FINAL RESPONSIVE */
 .final-message {
-    margin: 25px 0;
+    margin: 20px 0;
     text-align: center;
+    padding: 0 15px;
 }
 
 .final-message h2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.8rem;
-    margin-bottom: 10px;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 8px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.2;
 }
 
 .love-quote {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     font-style: italic;
     opacity: 0.9;
     max-width: 300px;
     margin: 0 auto;
-}
-
-/* RESPONSIVE */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .book {
-        height: 580px;
-        padding: 20px;
-    }
-    
-    .page {
-        padding: 20px;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .photo-frame {
-        width: 140px;
-        height: 140px;
-        margin: 5px 0 15px 0;
-    }
-    
-    .photo-circle i {
-        font-size: 3rem;
-    }
-    
-    .message-box {
-        padding: 15px;
-        min-height: 140px;
-        max-height: 160px;
-    }
-    
-    #typing {
-        font-size: 0.95rem;
-        line-height: 1.4;
-    }
-    
-    .next-btn {
-        padding: 12px 30px;
-        font-size: 1rem;
-    }
-    
-    .celebration-title {
-        font-size: 2rem;
-    }
-    
-    .detail-card {
-        padding: 12px;
-    }
-    
-    .detail-text h3 {
-        font-size: 1.1rem;
-    }
-    
-    .final-message h2 {
-        font-size: 2.3rem;
-    }
-    
-    .buttons-container {
-        min-height: 160px;
-    }
-    
-    .yes, .no {
-        padding: 15px 20px;
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-height: 700px) {
-    .book {
-        height: 550px;
-    }
-    
-    .photo-frame {
-        width: 130px;
-        height: 130px;
-        margin: 5px 0 10px 0;
-    }
-    
-    .message-box {
-        min-height: 120px;
-        max-height: 140px;
-        padding: 12px;
-    }
 }
 
 /* ESTILOS ADICIONALES PARA ASEGURAR VISIBILIDAD */
@@ -714,15 +662,6 @@ body {
 @keyframes pulseButton {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
-}
-
-/* ASEGURAR QUE TODO SEA VISIBLE */
-.page-content {
-    padding-bottom: 20px;
-}
-
-.text-and-button {
-    justify-content: center;
 }
 
 /* SCROLL PERSONALIZADO */
@@ -738,4 +677,156 @@ body {
 .message-box::-webkit-scrollbar-thumb {
     background: #ff4e50;
     border-radius: 10px;
+}
+
+/* MEDIA QUERIES ESPECÍFICAS */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .book {
+        min-height: 500px;
+        border-radius: 20px;
+    }
+    
+    .page {
+        padding: 15px 10px;
+    }
+    
+    .decoration-hearts {
+        gap: 10px;
+    }
+    
+    .decoration-hearts span {
+        font-size: 1.5rem;
+    }
+    
+    .message-box {
+        padding: 12px;
+        min-height: 100px;
+        max-height: 150px;
+    }
+    
+    .buttons-container {
+        min-height: 140px;
+    }
+    
+    .yes, .no {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 500px;
+    }
+    
+    .book {
+        min-height: 650px;
+    }
+    
+    .photo-frame {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .photo-circle i {
+        font-size: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 550px;
+    }
+    
+    .book {
+        min-height: 700px;
+    }
+}
+
+@media (max-height: 600px) {
+    .book {
+        min-height: 450px;
+    }
+    
+    .photo-frame {
+        width: 100px;
+        height: 100px;
+        margin: 5px 0 10px 0;
+    }
+    
+    .photo-circle i {
+        font-size: 2.5rem;
+    }
+    
+    .message-box {
+        min-height: 80px;
+        max-height: 120px;
+        padding: 10px;
+    }
+    
+    .typing-container {
+        min-height: 70px;
+    }
+    
+    #typing {
+        font-size: 0.85rem;
+    }
+}
+
+/* AJUSTES PARA PANTALLAS MUY GRANDES */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 600px;
+    }
+    
+    .book {
+        min-height: 750px;
+    }
+}
+
+/* AJUSTES PARA DISPOSITIVOS EN MODO HORIZONTAL */
+@media (max-height: 500px) and (orientation: landscape) {
+    .book {
+        min-height: 350px;
+        max-height: 85vh;
+    }
+    
+    .page-content {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    
+    .photo-frame {
+        width: 80px;
+        height: 80px;
+        margin: 5px 0;
+    }
+    
+    .photo-circle i {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+    
+    .photo-circle p {
+        font-size: 0.7rem;
+    }
+    
+    .message-box {
+        min-height: 60px;
+        max-height: 100px;
+        padding: 8px;
+    }
+    
+    .typing-container {
+        min-height: 50px;
+    }
+    
+    #typing {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
 }
