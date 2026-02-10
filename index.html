@@ -3,19 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciencia de Datos - Método Leitner</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mi Libro para Ti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background-color: #f9f1e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #5a3921;
+        }
+
+        .book-container {
+            width: 90%;
+            max-width: 900px;
+            height: 600px;
+            perspective: 1500px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-front {
+            background: linear-gradient(135deg, #fdf6f0 0%, #f8e9d9 100%);
+            border: 1px solid #e6d0b8;
+        }
+
+        .page-back {
+            background: linear-gradient(135deg, #f8e9d9 0%, #fdf6f0 100%);
+            border: 1px solid #e6d0b8;
+            transform: rotateY(180deg);
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 14px;
+            color: #b08d6e;
+        }
+
+        /* Portada del libro */
+        .cover {
+            background: linear-gradient(135deg, #d4a574 0%, #b08d6e 100%);
+            color: white;
+            z-index: 10;
+        }
+
+        .cover h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+
+        .cover h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: #fdf6f0;
+        }
+
+        .cover-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px 0;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            color: #ff6b8b;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Contenido de las páginas */
+        .page-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #b08d6e;
+            border-bottom: 2px solid #e6d0b8;
+            padding-bottom: 10px;
+        }
+
+        .page-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 80%;
+        }
+
+        .romantic-img {
+            width: 220px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid white;
+        }
+
+        /* Controles de navegación */
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: #d4a574;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #b08d6e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:disabled {
+            background-color: #e6d0b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Mensaje especial del 14 de febrero */
+        .valentine-content {
+            display: none;
+        }
+
+        .valentine-content.show {
+            display: block;
+            animation: fadeIn 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .valentine-title {
+            color: #ff6b8b;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .love-letter {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b8b;
+            font-style: italic;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-align: left;
+            max-width: 90%;
+        }
+
+        /* Decoraciones */
+        .decoration {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .heart {
+            color: #ff6b8b;
+            font-size: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-container {
+                height: 500px;
+            }
+            
+            .cover h1 {
+                font-size: 2rem;
+            }
+            
+            .cover h2 {
+                font-size: 1.4rem;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .page-content {
+                font-size: 1rem;
+                max-width: 95%;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Ciencia de Datos en Negocios - Método Leitner</h1>
-    </header>
+    <div class="book-container">
+        <div class="book" id="book">
+            <!-- Portada -->
+            <div class="page page-front cover">
+                <div class="heart-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h1>Para Mi Amor</h1>
+                <h2>Un libro especial para una persona especial</h2>
+                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pareja" class="cover-img">
+                <p style="margin-top: 20px; font-size: 1.2rem;">Abre este libro y descubre lo que siento por ti</p>
+                <div class="page-number">❤️</div>
+            </div>
 
-    <nav>
-        <a href="fundamentos.html">FUNDAMENTOS MATEMÁTICOS</a>
-        <a href="programacion.html">PROGRAMACIÓN</a>
-        <a href="negocios.html">NEGOCIOS Y ESTRATEGIAS</a>
-    </nav>
+            <!-- Página 1 -->
+            <div class="page page-back">
+                <h2 class="page-title">Mi Razón</h2>
+                <p class="page-content">
+                    Desde que llegaste a mi vida, todo tiene más color. Eres la razón por la que sonrío cada mañana y la última persona en la que pienso antes de dormir.
+                </p>
+                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pareja feliz" class="romantic-img">
+                <p class="page-content">
+                    Contigo he descubierto lo que es el amor verdadero, ese que no pide nada a cambio y que crece día a día.
+                </p>
+                <div class="page-number">1</div>
+            </div>
+
+            <!-- Página 2 -->
+            <div class="page page-front">
+                <h2 class="page-title">Nuestros Momentos</h2>
+                <p class="page-content">
+                    Cada risa, cada abrazo, cada conversación hasta tarde... todos son tesoros que guardo en mi corazón.
+                </p>
+                <img src="https://images.unsplash.com/photo-1529254479751-fbacb4c7a587?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Momentos juntos" class="romantic-img">
+                <p class="page-content">
+                    Aunque a veces la vida nos presente desafíos, sé que juntos podemos superar cualquier cosa.
+                </p>
+                <div class="page-number">2</div>
+            </div>
+
+            <!-- Página 3 - Pregunta especial -->
+            <div class="page page-back">
+                <h2 class="page-title">Una Pregunta Especial</h2>
+                <p class="page-content">
+                    Hay algo que he estado deseando preguntarte desde hace tiempo, algo que llevo en el corazón...
+                </p>
+                <div class="heart-icon" style="font-size: 4rem;">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <p class="page-content" style="font-size: 1.5rem; margin-top: 20px; color: #ff6b8b; font-weight: bold;">
+                    ¿Quieres ser mi 14 de febrero... y todos los días de mi vida?
+                </p>
+                <p class="page-content" style="margin-top: 30px;">
+                    Este día siempre será especial, pero contigo a mi lado sería simplemente perfecto.
+                </p>
+                <div class="page-number">3</div>
+            </div>
+
+            <!-- Página 4 - Contenido del 14 de febrero (inicialmente oculto) -->
+            <div class="page page-front">
+                <div class="valentine-content" id="valentine-content">
+                    <h2 class="valentine-title">¡Feliz 14 de Febrero!</h2>
+                    <p class="page-content">
+                        Hoy es un día especial para celebrar nuestro amor. Gracias por aceptar ser mi compañera en esta aventura.
+                    </p>
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Celebración" class="romantic-img">
+                    <div class="love-letter">
+                        <p>Mi amor,</p>
+                        <p>Hoy quiero recordarte lo mucho que significas para mí. Eres la luz que ilumina mis días y la calma que tranquiliza mis noches.</p>
+                        <p>Cada momento a tu lado es un regalo que atesoro con todo mi corazón. Espero que este sea el primero de muchos 14 de febrero juntos.</p>
+                        <p>Con todo mi amor,<br>Tu pareja</p>
+                    </div>
+                </div>
+                <div id="placeholder-content">
+                    <h2 class="page-title">Una Sorpresa Esperando</h2>
+                    <p class="page-content">
+                        Esta página guarda una sorpresa especial para cuando llegue el 14 de febrero. Vuelve ese día para descubrirla.
+                    </p>
+                    <div class="heart-icon" style="font-size: 4rem;">
+                        <i class="far fa-calendar-heart"></i>
+                    </div>
+                    <p class="page-content">
+                        Mientras tanto, cada día a tu lado es un regalo que aprecio más de lo que las palabras pueden expresar.
+                    </p>
+                </div>
+                <div class="page-number">4</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="prev-btn">
+            <i class="fas fa-arrow-left"></i> Página Anterior
+        </button>
+        <button class="btn" id="next-btn">
+            Siguiente Página <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Variables para el control del libro
+        const book = document.getElementById('book');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const valentineContent = document.getElementById('valentine-content');
+        const placeholderContent = document.getElementById('placeholder-content');
+        
+        let currentPage = 0;
+        const totalPages = 4; // Número total de páginas
+        const feb14Page = 3; // Página con contenido del 14 de febrero
+        
+        // Verificar si es 14 de febrero
+        function isFebruary14() {
+            const today = new Date();
+            return today.getMonth() === 1 && today.getDate() === 14; // Enero es 0, Febrero es 1
+        }
+        
+        // Mostrar contenido especial si es 14 de febrero
+        function checkValentineContent() {
+            if (isFebruary14()) {
+                valentineContent.classList.add('show');
+                placeholderContent.style.display = 'none';
+            } else {
+                valentineContent.classList.remove('show');
+                placeholderContent.style.display = 'block';
+            }
+        }
+        
+        // Inicializar la verificación de fecha
+        checkValentineContent();
+        
+        // Función para girar página
+        function goToPage(page) {
+            // Limitar el rango de páginas
+            if (page < 0) page = 0;
+            if (page > totalPages - 1) page = totalPages - 1;
+            
+            // Calcular el ángulo de rotación
+            const angle = page * 180;
+            
+            // Aplicar la rotación al libro
+            book.style.transform = `rotateY(${angle}deg)`;
+            
+            // Actualizar la página actual
+            currentPage = page;
+            
+            // Actualizar estado de los botones
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === totalPages - 1;
+            
+            // Si estamos en la página del 14 de febrero, verificar si mostrar contenido especial
+            if (currentPage === feb14Page) {
+                checkValentineContent();
+            }
+        }
+        
+        // Event listeners para los botones
+        prevBtn.addEventListener('click', () => {
+            goToPage(currentPage - 1);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            goToPage(currentPage + 1);
+        });
+        
+        // Inicializar libro en la primera página
+        goToPage(0);
+        
+        // También permitir navegación con teclas
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                goToPage(currentPage - 1);
+            } else if (e.key === 'ArrowRight') {
+                goToPage(currentPage + 1);
+            }
+        });
+        
+        // Función para simular que es 14 de febrero (para pruebas)
+        // Cambia a true para ver cómo se vería el contenido del 14 de febrero
+        const simulateFebruary14 = false;
+        
+        if (simulateFebruary14) {
+            // Forzar mostrar contenido del 14 de febrero
+            valentineContent.classList.add('show');
+            placeholderContent.style.display = 'none';
+        }
+    </script>
 </body>
 </html>
-
