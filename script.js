@@ -20,7 +20,7 @@ let textoEscrito = false;
 let escrituraActiva = false;
 
 // SOLO UNA COPIA DEL TEXTO
-const mensajeAmor = "hola amor... Desde que te conocí supe que eras alguien muy especial. Gracias por hacer mis días más felices, por tu sonrisa, por tu forma de ser.Quiero que sepas que te quiero mucho y que este es solo el inicio de muchas cosas bonitas contigo. 💖"
+const mensajeAmor = "Hola amor… 💕. Desde que te conocí supe que eras alguien muy especial, mi osita y mi chatita hermosa 🐻💖. Gracias por hacer mis días más felices, por tu sonrisa, esos ojitos que me enamora y por ser tan linda conmigo. Quiero que sepas que te amoo mucho, más de lo que puedo explicar con palabras 💘. Este es solo el inicio de una historia muy bonita contigo, porque quiero que seas parte de mi vida siempre 💑✨. Te amooo hoy, mañana y siempre, mi amor 💕🌹"
 
 // =============================================
 // INICIALIZAR
