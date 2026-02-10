@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background: black;
+    background-image: url("fotos/foto1.jpg"), url("fotos/foto2.jpg"), url("fotos/foto3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#libro {
+    background: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagina {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pagina.activa {
+    display: flex;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btnSi {
+    background: pink;
+    color: black;
+    font-size: 22px;
+}
+
+#btnNo {
+    background: red;
+    color: white;
+}
