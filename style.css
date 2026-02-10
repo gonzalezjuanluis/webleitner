@@ -937,3 +937,20 @@ body {
     position: relative !important;
     transform: none !important;
 }
+.yt-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.yt-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff8fa3, #ff4d6d);
+}
