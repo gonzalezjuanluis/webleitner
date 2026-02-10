@@ -2,34 +2,56 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para mi amor 💖</title>
+<title>Libro para Tanya 💖</title>
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial;
-    text-align: center;
-    color: white;
-    background: url("foto1.jpg") no-repeat center center fixed;
-    background-size: cover;
-}
-
-.pagina {
-    display: none;
-    background: rgba(0,0,0,0.7);
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    padding-top: 100px;
+    font-family: Arial;
+    color: black;
 }
 
-.activa {
-    display: block;
+/* LIBRO */
+.libro {
+    width: 600px;
+    height: 400px;
+    perspective: 2000px;
+    position: relative;
 }
 
+/* PAGINAS */
+.pagina {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    transform-origin: left;
+    transition: transform 1s;
+    box-shadow: 0 0 20px black;
+    padding: 30px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+}
+
+.pagina h1, p {
+    text-align: center;
+}
+
+/* PASAR PAGINA */
+.volteada {
+    transform: rotateY(-180deg);
+}
+
+/* BOTONES */
 button {
-    padding: 15px 30px;
-    font-size: 20px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -40,65 +62,142 @@ button {
 #btnNo {
     background: red;
     color: white;
+    position: absolute;
+}
+
+/* FUEGOS */
+canvas {
+    position: fixed;
+    top:0;
+    left:0;
 }
 </style>
 </head>
 
 <body>
 
-<div id="p1" class="pagina activa">
-    <h1>Hola mi amor 💕</h1>
-    <p>Quiero preguntarte algo muy especial...</p>
-    <button onclick="siguiente()">Siguiente ➡</button>
+<!-- MUSICA -->
+<audio autoplay loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<div class="libro">
+
+<!-- PAGINA 1 -->
+<div class="pagina" id="p1">
+    <h1>Para Tanya Chávez Alanis 💖</h1>
+    <p>
+        Hola mi amor hermoso 💕<br><br>
+        Desde que llegaste a mi vida todo cambió para mejor.  
+        Tu sonrisa me hace feliz y tu voz me da paz.  
+        Hice este libro solo para ti porque eres muy especial para mí 💘
+    </p>
+    <button onclick="pasar(1)">Siguiente ➡</button>
 </div>
 
-<div id="p2" class="pagina">
-    <h1>Próximamente...</h1>
-    <button onclick="siguiente()">Siguiente ➡</button>
+<!-- PAGINA 2 -->
+<div class="pagina" id="p2">
+    <h1>🔒 Se desbloquea el 14 de febrero</h1>
+    <p>
+        Este apartado es solo para ti amor.  
+        Aquí pondré nuestras fotos, recuerdos y palabras bonitas.  
+        Quiero que sea una sorpresa especial solo para ti 💖
+    </p>
+    <button onclick="pasar(2)">Siguiente ➡</button>
 </div>
 
-<div id="p3" class="pagina">
-    <h1>Próximamente...</h1>
-    <button onclick="siguiente()">Siguiente ➡</button>
+<!-- PAGINA 3 -->
+<div class="pagina" id="p3">
+    <h1>💌 Un mensaje especial</h1>
+    <p>
+        Próximamente amor, este libro se llenará de amor el 14 de febrero.  
+        Quiero que ese día veas cuánto te amo ❤️
+    </p>
+    <button onclick="pasar(3)">Siguiente ➡</button>
 </div>
 
-<div id="p4" class="pagina">
+<!-- PAGINA 4 (PREGUNTA) -->
+<div class="pagina" id="p4">
     <h1>¿Quieres ser mi 14 de febrero? 💘</h1>
-    <br>
-
+    <br><br>
     <button id="btnSi" onclick="aceptar()">SÍ 💕</button>
-    <button id="btnNo" onclick="rechazar()">NO 😢</button>
+    <button id="btnNo">NO 😢</button>
 </div>
 
-<div id="p5" class="pagina">
+<!-- PAGINA 5 FINAL -->
+<div class="pagina" id="p5">
     <h1>🎉 FELICIDADES MI AMOR 🎉</h1>
-    <h2>Nos vemos en:</h2>
+    <p>Nos vemos en:</p>
     <h2>📍 (PON EL LUGAR)</h2>
     <h2>📅 14 de febrero</h2>
     <h2>🕒 (PON LA HORA)</h2>
-    <h1>Te amo 💖</h1>
+    <h1>Te amo Tanya 💖</h1>
+    <canvas id="fuegos"></canvas>
+</div>
+
 </div>
 
 <script>
-let pagina = 1;
-let tamaño = 20;
-
-function siguiente() {
-    document.getElementById("p" + pagina).classList.remove("activa");
-    pagina++;
-    document.getElementById("p" + pagina).classList.add("activa");
+// PASAR PAGINAS
+function pasar(n){
+    document.getElementById("p"+n).classList.add("volteada");
 }
 
-function rechazar() {
-    tamaño += 10;
-    document.getElementById("btnSi").style.fontSize = tamaño + "px";
+// BOTON NO HUYE
+document.getElementById("btnNo").addEventListener("mouseover",()=>{
+    let x = Math.random()*300;
+    let y = Math.random()*200;
+    btnNo.style.left = x+"px";
+    btnNo.style.top = y+"px";
+});
+
+// ACEPTAR
+function aceptar(){
+    document.getElementById("p4").classList.add("volteada");
+    iniciarFuegos();
 }
 
-function aceptar() {
-    document.getElementById("p4").classList.remove("activa");
-    document.getElementById("p5").classList.add("activa");
+// FUEGOS ARTIFICIALES
+function iniciarFuegos(){
+let canvas=document.getElementById("fuegos");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let ctx=canvas.getContext("2d");
+let particles=[];
+
+function boom(){
+    for(let i=0;i<150;i++){
+        particles.push({
+            x:Math.random()*canvas.width,
+            y:Math.random()*canvas.height,
+            vx:(Math.random()-0.5)*6,
+            vy:(Math.random()-0.5)*6,
+            life:100
+        });
+    }
+}
+
+function anim(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p,i)=>{
+        p.x+=p.vx;
+        p.y+=p.vy;
+        p.life--;
+        ctx.fillStyle="pink";
+        ctx.fillRect(p.x,p.y,3,3);
+        if(p.life<=0) particles.splice(i,1);
+    });
+    requestAnimationFrame(anim);
+}
+
+setInterval(boom,1200);
+anim();
 }
 </script>
+
+</body>
+</html>
+
 
 </body>
 </html>
