@@ -1,204 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Libro para Tanya 💖</title>
-
-<style>
-body {
-    background: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial;
-    color: black;
-}
-
-/* LIBRO */
-.libro {
-    width: 600px;
-    height: 400px;
-    perspective: 2000px;
-    position: relative;
-}
-
-/* PAGINAS */
-.pagina {
-    width: 100%;
-    height: 100%;
-    background: white;
-    position: absolute;
-    transform-origin: left;
-    transition: transform 1s;
-    box-shadow: 0 0 20px black;
-    padding: 30px;
-    box-sizing: border-box;
-    backface-visibility: hidden;
-}
-
-.pagina h1, p {
-    text-align: center;
-}
-
-/* PASAR PAGINA */
-.volteada {
-    transform: rotateY(-180deg);
-}
-
-/* BOTONES */
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-#btnSi {
-    background: pink;
-}
-
-#btnNo {
-    background: red;
-    color: white;
-    position: absolute;
-}
-
-/* FUEGOS */
-canvas {
-    position: fixed;
-    top:0;
-    left:0;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Tanya 💖 - Mi Libro de Amor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <!-- Fondo animado -->
+    <div class="background-animation"></div>
+    
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="book">
+            <!-- PÁGINA 1 -->
+            <div class="page active" id="page1">
+                <div class="page-content">
+                    <div class="decoration-hearts">
+                        <span>💖</span>
+                        <span>💕</span>
+                        <span>💗</span>
+                    </div>
+                    
+                    <div class="header">
+                        <h1>Para Tanya Chávez Alanis</h1>
+                        <div class="heart-title">💖</div>
+                    </div>
+                    
+                    <div class="photo-frame">
+                        <div class="photo-circle">
+                            <i class="fas fa-heart"></i>
+                            <p>Nuestro Libro</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-and-button">
+                        <div class="message-box">
+                            <div class="typing-container">
+                                <p id="typing"></p>
+                                <span class="cursor">|</span>
+                            </div>
+                        </div>
+                        
+                        <button class="next-btn" onclick="nextPage()" id="nextBtn1">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="page-indicator">Página 1 de 4</div>
+                </div>
+            </div>
 
-<!-- MUSICA -->
-<audio autoplay loop>
-    <source src="cancion.mp3" type="audio/mpeg">
-</audio>
+            <!-- PÁGINA 2 -->
+            <div class="page" id="page2">
+                <div class="page-content">
+                    <div class="lock-container">
+                        <div class="lock-icon">
+                            <i class="fas fa-lock"></i>
+                            <div class="lock-date">14/02</div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="secret-title">🔒 Mensaje Secreto</h2>
+                    
+                    <div class="secret-message">
+                        <p><i class="fas fa-heart"></i> Este espacio es solo para ti mi amor.</p>
+                        <p><i class="fas fa-images"></i> Aquí pondré nuestras fotos más bonitas.</p>
+                        <p><i class="fas fa-star"></i> Recuerdos especiales que atesoramos.</p>
+                        <p><i class="fas fa-gift"></i> Palabras de amor guardadas para ese día.</p>
+                    </div>
+                    
+                    <div class="countdown">
+                        <p>Se desbloquea en:</p>
+                        <div class="countdown-timer">
+                            <div class="time-unit">
+                                <span id="days">00</span>
+                                <small>Días</small>
+                            </div>
+                            <div class="time-unit">
+                                <span id="hours">00</span>
+                                <small>Horas</small>
+                            </div>
+                            <div class="time-unit">
+                                <span id="minutes">00</span>
+                                <small>Minutos</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-container">
+                        <button class="next-btn" onclick="nextPage()" id="nextBtn2">
+                            <span>Continuar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="page-indicator">Página 2 de 4</div>
+                </div>
+            </div>
 
-<div class="libro">
+            <!-- PÁGINA 3 -->
+            <div class="page" id="page3">
+                <div class="page-content">
+                    <div class="question-container">
+                        <div class="pulse-heart">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        
+                        <h2>Una pregunta especial</h2>
+                        <h3>¿Quieres ser mi 14 de febrero? 💘</h3>
+                        <p class="sub-question">Y todos los días que vengan después...</p>
+                        
+                        <div class="buttons-container">
+                            <button class="yes" onclick="accept()">
+                                <i class="fas fa-heart"></i>
+                                <span>SÍ, CLARO QUE SÍ 💕</span>
+                            </button>
+                            
+                            <button class="no" id="noBtn">
+                                <i class="fas fa-times"></i>
+                                <span>NO 😢</span>
+                            </button>
+                        </div>
+                        
+                        <p class="hint">(Elige con el corazón)</p>
+                    </div>
+                    
+                    <div class="page-indicator">Página 3 de 4</div>
+                </div>
+            </div>
 
-<!-- PAGINA 1 -->
-<div class="pagina" id="p1">
-    <h1>Para Tanya Chávez Alanis 💖</h1>
-    <p>
-        Hola mi amor hermoso 💕<br><br>
-        Desde que llegaste a mi vida todo cambió para mejor.  
-        Tu sonrisa me hace feliz y tu voz me da paz.  
-        Hice este libro solo para ti porque eres muy especial para mí 💘
-    </p>
-    <button onclick="pasar(1)">Siguiente ➡</button>
-</div>
+            <!-- PÁGINA 4 -->
+            <div class="page" id="page4">
+                <div class="page-content celebration">
+                    <div class="confetti"></div>
+                    
+                    <h1 class="celebration-title">🎉 ¡FELICIDADES MI AMOR! 🎉</h1>
+                    
+                    <div class="meeting-details">
+                        <p class="subtitle">Nos vemos en:</p>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="detail-text">
+                                <h3>📍 Nuestro lugar especial</h3>
+                                <p>(El sitio donde más felices somos)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="detail-text">
+                                <h3>📅 14 de Febrero</h3>
+                                <p>Nuestro día del amor</p>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <div class="detail-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="detail-text">
+                                <h3>🕒 Tu hora preferida</h3>
+                                <p>(Cuando las estrellas brillen más)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="final-message">
+                        <h2>Te amo Tanya 💖</h2>
+                        <p class="love-quote">Eres la razón de mi felicidad</p>
+                    </div>
+                    
+                    <div class="page-indicator">Página 4 de 4</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- PAGINA 2 -->
-<div class="pagina" id="p2">
-    <h1>🔒 Se desbloquea el 14 de febrero</h1>
-    <p>
-        Este apartado es solo para ti amor.  
-        Aquí pondré nuestras fotos, recuerdos y palabras bonitas.  
-        Quiero que sea una sorpresa especial solo para ti 💖
-    </p>
-    <button onclick="pasar(2)">Siguiente ➡</button>
-</div>
+    <!-- Audio para música -->
+    <audio id="background-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- PAGINA 3 -->
-<div class="pagina" id="p3">
-    <h1>💌 Un mensaje especial</h1>
-    <p>
-        Próximamente amor, este libro se llenará de amor el 14 de febrero.  
-        Quiero que ese día veas cuánto te amo ❤️
-    </p>
-    <button onclick="pasar(3)">Siguiente ➡</button>
-</div>
-
-<!-- PAGINA 4 (PREGUNTA) -->
-<div class="pagina" id="p4">
-    <h1>¿Quieres ser mi 14 de febrero? 💘</h1>
-    <br><br>
-    <button id="btnSi" onclick="aceptar()">SÍ 💕</button>
-    <button id="btnNo">NO 😢</button>
-</div>
-
-<!-- PAGINA 5 FINAL -->
-<div class="pagina" id="p5">
-    <h1>🎉 FELICIDADES MI AMOR 🎉</h1>
-    <p>Nos vemos en:</p>
-    <h2>📍 (PON EL LUGAR)</h2>
-    <h2>📅 14 de febrero</h2>
-    <h2>🕒 (PON LA HORA)</h2>
-    <h1>Te amo Tanya 💖</h1>
-    <canvas id="fuegos"></canvas>
-</div>
-
-</div>
-
-<script>
-// PASAR PAGINAS
-function pasar(n){
-    document.getElementById("p"+n).classList.add("volteada");
-}
-
-// BOTON NO HUYE
-document.getElementById("btnNo").addEventListener("mouseover",()=>{
-    let x = Math.random()*300;
-    let y = Math.random()*200;
-    btnNo.style.left = x+"px";
-    btnNo.style.top = y+"px";
-});
-
-// ACEPTAR
-function aceptar(){
-    document.getElementById("p4").classList.add("volteada");
-    iniciarFuegos();
-}
-
-// FUEGOS ARTIFICIALES
-function iniciarFuegos(){
-let canvas=document.getElementById("fuegos");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-let ctx=canvas.getContext("2d");
-let particles=[];
-
-function boom(){
-    for(let i=0;i<150;i++){
-        particles.push({
-            x:Math.random()*canvas.width,
-            y:Math.random()*canvas.height,
-            vx:(Math.random()-0.5)*6,
-            vy:(Math.random()-0.5)*6,
-            life:100
-        });
-    }
-}
-
-function anim(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach((p,i)=>{
-        p.x+=p.vx;
-        p.y+=p.vy;
-        p.life--;
-        ctx.fillStyle="pink";
-        ctx.fillRect(p.x,p.y,3,3);
-        if(p.life<=0) particles.splice(i,1);
-    });
-    requestAnimationFrame(anim);
-}
-
-setInterval(boom,1200);
-anim();
-}
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-</body>
-</html>
-
