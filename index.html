@@ -1,57 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Para mi amor 💖</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Para mi amor 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    background: url("foto1.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.pagina {
+    display: none;
+    background: rgba(0,0,0,0.7);
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.activa {
+    display: block;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#btnSi {
+    background: pink;
+}
+
+#btnNo {
+    background: red;
+    color: white;
+}
+</style>
 </head>
+
 <body>
 
-<div id="libro">
-
-    <!-- PAGINA 1 -->
-    <div class="pagina activa" id="p1">
-        <h1>💌 Para mi novia hermosa</h1>
-        <p>Desde que llegaste a mi vida todo cambió...</p>
-        <button onclick="siguientePagina()">Siguiente ➡</button>
-    </div>
-
-    <!-- PAGINA 2 -->
-    <div class="pagina" id="p2">
-        <h1>📸 Nuestros recuerdos</h1>
-        <p>Próximamente...</p>
-        <button onclick="siguientePagina()">Siguiente ➡</button>
-    </div>
-
-    <!-- PAGINA 3 -->
-    <div class="pagina" id="p3">
-        <h1>💖 Mensaje especial</h1>
-        <p>Próximamente...</p>
-        <button onclick="siguientePagina()">Siguiente ➡</button>
-    </div>
-
-    <!-- PAGINA 4 (PREGUNTA) -->
-    <div class="pagina" id="p4">
-        <h1>¿Quieres ser mi 14 de febrero? 💘</h1>
-
-        <div class="botones">
-            <button id="btnSi" onclick="aceptar()">SÍ 💕</button>
-            <button id="btnNo" onclick="rechazar()">NO 😢</button>
-        </div>
-    </div>
-
-    <!-- PAGINA FINAL -->
-    <div class="pagina" id="p5">
-        <h1>🎉 FELICIDADES MI AMOR 🎉</h1>
-        <p>Nos vemos en:</p>
-        <h2>📍 (Pon aquí el lugar)</h2>
-        <h2>📅 14 de febrero</h2>
-        <h2>🕒 (Pon la hora)</h2>
-        <h1>Te amo muchísimo 💖</h1>
-    </div>
-
+<div id="p1" class="pagina activa">
+    <h1>Hola mi amor 💕</h1>
+    <p>Quiero preguntarte algo muy especial...</p>
+    <button onclick="siguiente()">Siguiente ➡</button>
 </div>
 
-<script src="script.js"></script>
+<div id="p2" class="pagina">
+    <h1>Próximamente...</h1>
+    <button onclick="siguiente()">Siguiente ➡</button>
+</div>
+
+<div id="p3" class="pagina">
+    <h1>Próximamente...</h1>
+    <button onclick="siguiente()">Siguiente ➡</button>
+</div>
+
+<div id="p4" class="pagina">
+    <h1>¿Quieres ser mi 14 de febrero? 💘</h1>
+    <br>
+
+    <button id="btnSi" onclick="aceptar()">SÍ 💕</button>
+    <button id="btnNo" onclick="rechazar()">NO 😢</button>
+</div>
+
+<div id="p5" class="pagina">
+    <h1>🎉 FELICIDADES MI AMOR 🎉</h1>
+    <h2>Nos vemos en:</h2>
+    <h2>📍 (PON EL LUGAR)</h2>
+    <h2>📅 14 de febrero</h2>
+    <h2>🕒 (PON LA HORA)</h2>
+    <h1>Te amo 💖</h1>
+</div>
+
+<script>
+let pagina = 1;
+let tamaño = 20;
+
+function siguiente() {
+    document.getElementById("p" + pagina).classList.remove("activa");
+    pagina++;
+    document.getElementById("p" + pagina).classList.add("activa");
+}
+
+function rechazar() {
+    tamaño += 10;
+    document.getElementById("btnSi").style.fontSize = tamaño + "px";
+}
+
+function aceptar() {
+    document.getElementById("p4").classList.remove("activa");
+    document.getElementById("p5").classList.add("activa");
+}
+</script>
+
 </body>
 </html>
+
